@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bansi Patel, CFA — Equity Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0A0D0C;
+      --surface: #111615;
+      --raise:   #161C1A;
+      --border:  #202826;
+      --text:    #EDEFEE;
+      --soft:    #A3B2AF;
+      --muted:   #6B7876;
+      --gold:    #C8A96E;
+      --credit:  #6B9FD6;
+    }
+
+    body {
+      font-family: "DM Sans", -apple-system, sans-serif;
+      background:
+        radial-gradient(900px 420px at 85% -80px, rgba(107,159,214,0.10), transparent 70%),
+        radial-gradient(700px 360px at 0% 0%, rgba(200,169,110,0.06), transparent 70%),
+        var(--bg);
+      background-repeat: no-repeat;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 40px; width: 100%; }
+
+    /* ── Hero ── */
+    header { padding: 56px 0 44px; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 56px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .topbar .tag { color: var(--credit); display: flex; align-items: center; gap: 8px; }
+    .topbar .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--credit); box-shadow: 0 0 10px var(--credit); }
+    .topbar a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color .15s, border-color .15s; }
+    .topbar a:hover { color: var(--gold); border-color: var(--gold); }
+
+    .header-name {
+      font-family: "DM Serif Display", Georgia, serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+    }
+    .header-name em { font-style: italic; color: var(--gold); }
+
+    .header-sub {
+      margin-top: 18px;
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--soft);
+    }
+
+    .stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .stat b { display: block; font-family: "DM Serif Display", serif; font-weight: 400; font-size: 1.9rem; }
+    .stat span { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── Cards ── */
+    main { flex: 1; padding-bottom: 56px; }
+
+    .section-label {
+      font-family: "DM Mono", monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .cards.one { grid-template-columns: minmax(0, 380px); }
+
+    .card {
+      background: linear-gradient(180deg, var(--raise), var(--surface));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: #2D3A44; box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); }
+
+    .logo-plate {
+      height: 108px;
+      background: #F4F5F3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 28px;
+      position: relative;
+    }
+    .logo-plate::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--credit); }
+    .logo-plate img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .logo-plate img.icon { max-height: 62px; border-radius: 14px; }
+
+    .wordmark { font-family: "DM Sans", sans-serif; font-weight: 700; font-size: 2.1rem; letter-spacing: -0.04em; color: #0B5FA5; }
+    .wordmark i { font-style: normal; color: #E4572E; }
+
+    .card-body { padding: 24px 24px 8px; flex: 1; }
+
+    .meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .ticker { font-family: "DM Mono", monospace; font-size: 0.76rem; letter-spacing: 0.1em; color: var(--credit); }
+    .date { font-family: "DM Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    .company { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 1.45rem; line-height: 1.15; margin-bottom: 14px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .chip {
+      font-family: "DM Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--soft);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 99px;
+    }
+    .chip.hl { color: var(--credit); border-color: rgba(107,159,214,.35); background: rgba(107,159,214,.08); }
+
+    .thesis { font-size: 0.84rem; line-height: 1.7; color: var(--soft); }
+
+    .docs { padding: 20px 24px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .doc {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-decoration: none;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color .15s, background .15s;
+    }
+    .doc:hover { border-color: var(--gold); background: rgba(200,169,110,0.06); }
+    .doc small { font-family: "DM Mono", monospace; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--muted); }
+    .doc strong { font-size: 0.8rem; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; gap: 6px; }
+    .doc strong::after { content: '↗'; color: var(--muted); }
+    .doc:hover strong::after { color: var(--gold); }
+
+    /* ── About ── */
+    .about { border-top: 1px solid var(--border); padding: 44px 0; }
+    .about .wrap { display: grid; grid-template-columns: 200px 1fr; gap: 40px; }
+    .about h3 { font-family: "DM Mono", monospace; font-weight: 500; font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+    .about-text { max-width: 740px; display: flex; flex-direction: column; gap: 14px; }
+    .about-text p { font-size: 0.86rem; line-height: 1.8; color: var(--soft); }
+
+    footer { border-top: 1px solid var(--border); padding: 22px 0; }
+    footer .wrap { display: flex; justify-content: space-between; font-family: "DM Mono", monospace; font-size: 0.62rem; letter-spacing: 0.08em; color: var(--muted); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 960px) { .cards { grid-template-columns: 1fr 1fr; } .cards.one { grid-template-columns: minmax(0, 380px); } }
+    @media (max-width: 680px) {
+      .cards.one { grid-template-columns: 1fr; }
+      .wrap { padding: 0 24px; }
+      header { padding: 36px 0 32px; }
+      .topbar { margin-bottom: 36px; }
+      .stats { gap: 24px; flex-wrap: wrap; }
+      .cards { grid-template-columns: 1fr; }
+      .about .wrap { grid-template-columns: 1fr; gap: 16px; }
+      footer .wrap { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <span class="tag">Equity Research</span>
+        <a href="https://bansipatel.github.io/investment-research/">Credit Research →</a>
+      </div>
+      <h1 class="header-name">Bansi Patel, CFA<br /><em>Equity Research</em></h1>
+      <p class="header-sub">Long equity pitches built around where market expectations diverge from underlying economics.</p>
+      <div class="stats">
+        <div class="stat"><b>1</b><span>Equity pitch</span></div>
+        <div class="stat"><b>2</b><span>Memos &amp; models</span></div>
+        <div class="stat"><b>Apr 2026</b><span>Latest</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="section-label">Equity Pitches</div>
+      <div class="cards one">
+
+        <!-- OKTA -->
+        <article class="card">
+          <div class="logo-plate"><img src="assets/okta.svg" alt="Okta" /></div>
+          <div class="card-body">
+            <div class="meta"><span class="ticker">OKTA</span><span class="date">Apr 2026</span></div>
+            <h2 class="company">Okta Inc</h2>
+            <div class="chips">
+              <span class="chip hl">Long · Buyside Pitch</span>
+              <span class="chip">Base $98.97</span>
+              <span class="chip">+57%</span>
+              <span class="chip">Current $62.93</span>
+            </div>
+            <p class="thesis">Market misprices Okta as a low-growth identity vendor losing share to Microsoft. Correct framework expands TAM to include non-human identities driven by AI agent deployment.</p>
+          </div>
+          <div class="docs">
+            <a class="doc" href="Equity%20Pitches/Okta%20Pitch%20-%20Bansi%20Patel.pdf" target="_blank"><small>PDF</small><strong>Equity Pitch</strong></a>
+            <a class="doc" href="Equity%20Pitches/Okta%20DCF%20-%20Bansi%20Patel.pdf" target="_blank"><small>PDF</small><strong>DCF</strong></a>
+          </div>
+        </article>
+
+        <!-- Add new cards above this line -->
+
+      </div>
+    </div>
+  </main>
+
+  <section class="about">
+    <div class="wrap">
+      <h3>About</h3>
+      <div class="about-text">
+        <p>Bansi Patel, CFA is an investor with experience across public credit, private credit, fixed income portfolio management, private equity underwriting, and fundamental equity research. He has held investment roles at MetLife Investment Management and Polen Capital Credit, advised private equity clients on diligence and value creation at Strategy&amp;, and currently evaluates lower-middle-market acquisition opportunities through Center State Capital Partners.</p>
+        <p>He holds an MBA from NYU Stern School of Business, where he served as a portfolio manager for the Michael Price Student Investment Fund and was a Teaching Fellow to Professor Aswath Damodaran in Valuation. He is also a CFA charterholder.</p>
+        <p>His investment process emphasizes downside protection, cash-flow durability, capital structure, valuation, and the relationship between business quality and price, with particular attention to scenarios where market expectations diverge from underlying economics.</p>
+        <p>The research published on this site reflects independent investment analysis and the author&rsquo;s own views.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Bansi Patel, CFA</span>
+      <a href="https://bansipatel.github.io/investment-research/">Credit Research →</a>
+    </div>
+  </footer>
+
+</body>
+</html>
